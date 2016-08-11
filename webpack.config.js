@@ -5,25 +5,28 @@ var options = {
     context: path.join(__dirname, 'app'),
     entry: './app.js',
     output: {
-        filename: 'bundlewebpack.js',
-        path: path.join(__dirname, 'public'),
+        filename: 'bund.js',
+        path: path.join(__dirname, 'public')
     },
     module: {
         preLoaders: [
             {
                 test: /\.js$/,
-                loader: 'eslint',
-                exclude: /node_modules/
+                loader: 'eslint'
             }
         ],
         loaders: [
             {
                 test: /\.js$/,
                 loader: 'babel',
-                exclude: /node_modules/,
                 query: {
                     presets: ['es2015']
                 }
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw',
+                exclude: /node_modules/
             }
         ]
     },
