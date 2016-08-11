@@ -18,6 +18,11 @@ var options = {
         loaders: [
             {
                 test: /\.js$/,
+                loader: 'ng-annotate?add=true',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.js$/,
                 loader: 'babel',
                 query: {
                     presets: ['es2015']
@@ -36,6 +41,33 @@ var options = {
             'node_modules'
         ],
         extensions: ['', '', '.js']
-    }
+    },
+    plugins: []
 };
+
+options.plugins.push(
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(false)
+);
+
+options.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+        mangle: true,
+        beautify: false,
+        compress: true,
+        enclose: true,
+        comments: false,
+        preamble: false,
+        verbose: false,
+        warnings: false
+    })
+);
+
+options.plugins.push(
+    new webpack.optimize.LimitChunkCountPlugin({
+        'maxChunks': 100,
+        'chunkOverhead': 10000
+    })
+);
+
 module.exports = options;

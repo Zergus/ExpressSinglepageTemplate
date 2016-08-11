@@ -1,46 +1,17 @@
-import HomeController from './HomeController.js';
+import module1Config from './module1/routes.js';
+import subConf from './module1/submodule/routes.js';
 
-export default ($stateProvider, $urlRouterProvider, $locationProvider) => {
-
-    let moduleRequest = null;
-
-    function requestModule () {
-        if (!moduleRequest) {
-            moduleRequest = new Promise(function (res, rej) {
-                require.ensure('./module1', function (require) {
-                    require('./module1');
-                    res(true);
-                });
-            });
-        }
-
-        return moduleRequest;
-    }
+export default function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    'ngInject';
 
     $stateProvider
         .state('home', {
             url: '/',
-            controller: HomeController,
-            controllerAs: 'ctrl',
             templateUrl: 'test.html'
         })
-        .state('module1', {
-            url: '/module1',
-            template () {
-                return requestModule().then(function () {
-                    return require('./module1/template.html');
-                });
-            },
-            resolve: {
-                module1 () {
-                    return requestModule().then(function () {
-                        console.log('file loaded');
-                        return true;
-                    });
-                }
-            }
-        });
+        .state('module1', module1Config)
+        .state('module1.sub', subConf);
 
 
     $locationProvider.html5Mode(true);
-};
+}

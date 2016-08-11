@@ -8,11 +8,9 @@ webpackJsonp([2],{
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var _module = angular.module('module1', []);
+	angular.module('module1', []);
 
-	console.log('module1 ready');
-
-	exports.default = _module;
+	exports.default = angular.module('module1');
 
 /***/ }
 
