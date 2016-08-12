@@ -42,7 +42,11 @@ var options = {
         ],
         extensions: ['', '', '.js']
     },
-    plugins: []
+    plugins: [
+        new webpack.ProvidePlugin({
+            'Promise': 'bluebird'
+        })
+    ]
 };
 
 options.plugins.push(
