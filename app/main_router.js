@@ -8,15 +8,24 @@ export default function ($stateProvider, $urlRouterProvider, $locationProvider) 
     'ngInject';
 
     $stateProvider
-        .state('home', {
-            url: '/',
+        .state('app', {
+            url: '',
+            abstract: true,
+            template: '<ui-view />'
+        })
+        .state('app.home', {
+            url: '/home',
             templateUrl: 'test.html'
         })
-        .state('module1', module1.route)
-        .state('module1.sub', module1sub.route)
-        .state('module2', module2.route)
-        .state('module2.sub', module2sub.route);
+        .state('app.module1', module1.route)
+        .state('app.module1.sub', module1sub.route)
+        .state('app.module2', module2.route)
+        .state('app.module2.sub', module2sub.route);
 
+
+    $urlRouterProvider.when('/', ['$state', function ($state) {
+        $state.go('app.home');
+    }]);
 
     $locationProvider.html5Mode(true);
 }

@@ -49,29 +49,29 @@ var options = {
     ]
 };
 
-options.plugins.push(
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(false)
-);
+// options.plugins.push(
+//     new webpack.optimize.DedupePlugin(),
+//     new webpack.optimize.OccurrenceOrderPlugin(false)
+// );
 
-options.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-        mangle: true,
-        beautify: false,
-        compress: true,
-        enclose: true,
-        comments: false,
-        preamble: false,
-        verbose: false,
-        warnings: false
-    })
-);
+// options.plugins.push(
+//     new webpack.optimize.UglifyJsPlugin({
+//         mangle: true,
+//         beautify: false,
+//         compress: true,
+//         enclose: true,
+//         comments: false,
+//         preamble: false,
+//         verbose: false,
+//         warnings: false
+//     })
+// );
 
-options.plugins.push(
-    new webpack.optimize.LimitChunkCountPlugin({
-        'maxChunks': 100,
-        'chunkOverhead': 10000
-    })
-);
+// options.plugins.push(
+//     new webpack.optimize.LimitChunkCountPlugin({
+//         'maxChunks': 100,
+//         'chunkOverhead': 10000
+//     })
+// );
 
 module.exports = options;

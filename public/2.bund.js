@@ -1,1 +1,0 @@
-webpackJsonp([2],{5:function(e,u){"use strict";Object.defineProperty(u,"__esModule",{value:!0}),u["default"]=angular.module("module2",[])}});
